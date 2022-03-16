@@ -1,0 +1,65 @@
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using MobileShop.Data.Entities;
+
+namespace MobileShop.Data
+{
+    public class MobileShopDbContext : IdentityDbContext
+    {
+        public MobileShopDbContext(DbContextOptions<MobileShopDbContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<Phone> Phones { get; init; }
+
+        public DbSet<Brand> Brands { get; init; }
+
+        public DbSet<Category> Categories { get; init; }
+
+        public DbSet<Model> Models { get; init; }
+
+        public DbSet<Dealer> Dealers { get; init; }
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<Phone>(entity =>
+            {
+                entity.HasOne(p => p.Brand)
+                    .WithMany(b => b.Phones)
+                    .HasForeignKey(p => p.BrandId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(p => p.Model)
+                    .WithMany(b => b.Phones)
+                    .HasForeignKey(p => p.ModelId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(p => p.Category)
+                    .WithMany(c => c.Phones)
+                    .HasForeignKey(p => p.CategoryId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(p => p.Dealer)
+                    .WithMany(d => d.Phones)
+                    .HasForeignKey(p => p.DealerId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity
+                .Property(p => p.Price)
+                .HasColumnType("decimal(18,2)");
+            });
+
+            builder
+                .Entity<Dealer>()
+                .HasOne<User>()
+                .WithOne()
+                .HasForeignKey<Dealer>(d => d.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
+    }
+}
+
