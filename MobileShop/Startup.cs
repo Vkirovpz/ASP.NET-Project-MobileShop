@@ -8,6 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MobileShop.Data;
+using MobileShop.Domain.Phones;
+using MobileShop.Domain.Dealers;
+using MobileShop.Domain.Phones.ServiceModels;
+using MobileShop.Infrastructure;
 
 namespace MobileShop
 {
@@ -36,11 +40,16 @@ namespace MobileShop
                 options.Password.RequireUppercase = false;
             })
                 .AddEntityFrameworkStores<MobileShopDbContext>();
+
             services.AddControllersWithViews();
+            services.AddTransient<IPhoneService, PhoneService>();
+            services.AddTransient<IDealerService, DealerService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.PrepareDatabase();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -64,6 +73,7 @@ namespace MobileShop
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+            
         }
     }
 }

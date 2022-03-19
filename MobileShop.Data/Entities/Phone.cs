@@ -29,19 +29,19 @@ namespace MobileShop.Data.Entities
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
+        [Required]
+        [StringLength(ModelMaxLength, MinimumLength = ModelMinLength)]
+        public string Model { get; set; }
+
         public int BrandId { get; set; }
 
-        public Brand Brand { get; set; }
+        public Brand Brand { get; init; }
 
-        public int ModelId { get; set; }
-
-        public Model Model { get; set; }
-
-        public int DealerId { get; init; }
+        public int DealerId { get; set; }
 
         public Dealer Dealer { get; init; }
 
-        public int CategoryId { get; init; }
+        public int CategoryId { get; set; }
 
         public Category Category { get; init; }
 

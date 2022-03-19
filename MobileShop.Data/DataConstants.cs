@@ -11,19 +11,15 @@
            public const int OverviewMinLength = 10;
            public const int MinPrice = 1;
            public const int MaxPrice = 10000;
-       }
+           public const int ModelMaxLength = 20;
+           public const int ModelMinLength = 2;
+        }
 
        public class Brand
        {
            public const int BrandMaxLength = 20;
            public const int BrandMinLength = 2;
        }
-
-        public class Model
-        {
-            public const int ModelMaxLength = 20;
-            public const int ModelMinLength = 2;
-        }
 
         public class Dealer
         {

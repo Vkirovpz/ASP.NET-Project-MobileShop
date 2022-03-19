@@ -17,8 +17,6 @@ namespace MobileShop.Data
 
         public DbSet<Category> Categories { get; init; }
 
-        public DbSet<Model> Models { get; init; }
-
         public DbSet<Dealer> Dealers { get; init; }
 
 
@@ -31,11 +29,6 @@ namespace MobileShop.Data
                 entity.HasOne(p => p.Brand)
                     .WithMany(b => b.Phones)
                     .HasForeignKey(p => p.BrandId)
-                    .OnDelete(DeleteBehavior.Restrict);
-
-                entity.HasOne(p => p.Model)
-                    .WithMany(b => b.Phones)
-                    .HasForeignKey(p => p.ModelId)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(p => p.Category)
