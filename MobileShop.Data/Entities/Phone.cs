@@ -35,15 +35,15 @@ namespace MobileShop.Data.Entities
 
         public int BrandId { get; set; }
 
-        public Brand Brand { get; init; }
+        public Brand Brand { get; set; }
 
         public int DealerId { get; set; }
 
-        public Dealer Dealer { get; init; }
+        public Dealer Dealer { get; set; }
 
         public int CategoryId { get; set; }
 
-        public Category Category { get; init; }
+        public Category Category { get; set; }
 
     }
 }

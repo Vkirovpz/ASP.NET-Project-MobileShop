@@ -1,16 +1,43 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using MobileShop.Domain.Dealers;
+using MobileShop.Infrastructure;
+using MobileShop.Models.Dealers;
 
 namespace MobileShop.Controllers
 {
     public class DealersController : Controller
     {
-        public IActionResult Index()
+        private readonly IDealerService dealers;
+
+        public DealersController(IDealerService dealers)
         {
-            return View();
+            this.dealers = dealers;
+        }
+
+        [Authorize]
+        public IActionResult Become() => View();
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Become(BecomeDealerFormModel dealer)
+        {
+            var userId = this.User.GetId();
+
+            if (dealers.IsDealer(userId))
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(dealer);
+            }
+
+            dealers.Create(dealer.Name, dealer.PhoneNumber, userId);
+
+            return RedirectToAction("Index", "Home");
+
         }
     }
 }

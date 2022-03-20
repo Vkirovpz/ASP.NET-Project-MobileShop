@@ -1,4 +1,5 @@
 ﻿using MobileShop.Data;
+using MobileShop.Data.Entities;
 using MobileShop.Domain.Phones.ServiceModels;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,27 @@ namespace MobileShop.Domain.Phones
         public PhoneService(MobileShopDbContext data)
         {
             this.data = data;
+        }
+
+        public int Create(int brandId, string model, string overview, decimal price, string imageUrl, int categoryId, string color, int dealerId)
+        {
+            var phoneData = new Phone
+            {
+                BrandId = brandId,
+                Model = model,
+                Overview = overview,
+                Price = price,
+                ImageUrl = imageUrl,
+                CategoryId = categoryId,
+                Color = color,
+                DealerId = dealerId
+            };
+
+            this.data.Phones.Add(phoneData);
+
+            this.data.SaveChanges();
+
+            return phoneData.Id;
         }
 
         public IEnumerable<PhoneBrandServiceModel> GetBrands()

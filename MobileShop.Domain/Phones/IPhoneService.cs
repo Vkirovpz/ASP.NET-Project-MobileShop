@@ -11,5 +11,15 @@ namespace MobileShop.Domain.Phones.ServiceModels
         public IEnumerable<PhoneBrandServiceModel> GetBrands();
 
         public IEnumerable<PhoneCategoryServiceModel> GetCategories();
+
+        public int Create(
+               int brandId,
+               string model,
+               string overview,
+               decimal price,
+               string imageUrl,
+               int conditionId,
+               string color,
+               int dealerId);
     }
 }

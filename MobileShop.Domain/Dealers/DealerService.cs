@@ -1,4 +1,5 @@
 ﻿using MobileShop.Data;
+using MobileShop.Data.Entities;
 using System;
 using System.Linq;
 
@@ -11,6 +12,20 @@ namespace MobileShop.Domain.Dealers
         public DealerService(MobileShopDbContext data)
         {
             this.data = data;
+        }
+
+        public int Create(string name, string phoneNumber, string userId)
+        {
+            var dealerData = new Dealer
+            {
+                Name = name,
+                PhoneNumber = phoneNumber,
+                UserId = userId
+            };
+
+            this.data.Dealers.Add(dealerData);
+            this.data.SaveChanges();
+            return dealerData.Id;
         }
 
         public int IdByUser(string userId)

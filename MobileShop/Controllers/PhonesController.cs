@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MobileShop.Domain.Dealers;
 using MobileShop.Domain.Phones.ServiceModels;
+using MobileShop.Infrastructure;
 using MobileShop.Models.Phones;
 
 namespace MobileShop.Controllers
@@ -20,9 +21,9 @@ namespace MobileShop.Controllers
         [Authorize]
         public IActionResult Add()
         {
-            //if (!this.dealers.IsDealer(this.User.GetId()))
+            //if (!this.dealers.IsDealer(this.user.getid()))
             //{
-            //    return RedirectToAction(nameof(DealersController.Become), "Dealers");
+            //    return redirecttoaction(nameof(dealerscontroller.become), "dealers");
             //}
 
             return View(new AddPhoneFormModel
@@ -37,8 +38,29 @@ namespace MobileShop.Controllers
         [Authorize]
         public IActionResult Add(AddPhoneFormModel phone)
         {
-            return View();
+            var dealerId = this.dealers.IdByUser(this.User.GetId());
+
+            if (!ModelState.IsValid)
+            {
+                phone.Brands = this.phones.GetBrands();
+                phone.Categories = this.phones.GetCategories();
+
+                return View(phone);
+            }
+
+            this.phones.Create(
+                phone.BrandId,
+                phone.Model,
+                phone.Overview,
+                phone.Price,
+                phone.ImageUrl,
+                phone.CategoryId,
+                phone.Color,
+                dealerId
+                );
+
+            return RedirectToAction("Index", "Home");
         }
-        
+
     }
 }
