@@ -1,10 +1,8 @@
-﻿using MobileShop.Data;
-using MobileShop.Data.Entities;
-using System;
-using System.Linq;
-
-namespace MobileShop.Domain.Dealers
+﻿namespace MobileShop.Domain.Dealers
 {
+    using System.Linq;
+    using MobileShop.Data;
+    using MobileShop.Data.Entities;
     public class DealerService : IDealerService
     {
         private readonly MobileShopDbContext data;

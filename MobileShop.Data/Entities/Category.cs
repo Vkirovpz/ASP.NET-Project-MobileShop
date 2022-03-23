@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MobileShop.Data.Entities
+﻿namespace MobileShop.Data.Entities
 {
-   public class Category
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    public class Category
     {
         public int Id { get; init; }
 

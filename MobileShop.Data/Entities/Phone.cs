@@ -1,9 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using static MobileShop.Data.DataConstants.Phone;
-
-namespace MobileShop.Data.Entities
+﻿namespace MobileShop.Data.Entities
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using static MobileShop.Data.DataConstants.Phone;
     public class Phone
     {
         public int Id { get; init; }

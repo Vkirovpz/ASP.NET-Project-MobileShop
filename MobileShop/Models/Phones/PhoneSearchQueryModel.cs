@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace MobileShop.Models.Phones
+﻿namespace MobileShop.Models.Phones
 {
+    using MobileShop.Domain.Phones.ServiceModels;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     public class PhoneSearchQueryModel
     {
         public const int PhonesPerPage = 3;
@@ -12,6 +12,7 @@ namespace MobileShop.Models.Phones
         public int TotalPhones { get; set; }
 
         public string Brand { get; init; }
+        public string Category { get; init; }
 
 
         [Display(Name = "Search by text")]
@@ -19,6 +20,8 @@ namespace MobileShop.Models.Phones
 
         public IEnumerable<string> Brands { get; set; }
 
-        //public IEnumerable<PhoneServiceModel> Phones { get; set; }
+        public IEnumerable<string> Categories { get; set; }
+
+        public IEnumerable<PhoneServiceModel> Phones { get; set; }
     }
 }

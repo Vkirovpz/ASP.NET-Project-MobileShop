@@ -4,10 +4,11 @@
    {
        public class Phone
        {
-           public const int OverviewMaxLength = 500;
+           
            public const int ImageUrlMaxLength = 300;
            public const int ColorMaxLength = 20;
            public const int ColorMinLength = 3;
+           public const int OverviewMaxLength = 500;
            public const int OverviewMinLength = 10;
            public const int MinPrice = 1;
            public const int MaxPrice = 10000;

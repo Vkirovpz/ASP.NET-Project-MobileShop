@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using static MobileShop.Data.DataConstants.Dealer;
-
-namespace MobileShop.Data.Entities
+﻿namespace MobileShop.Data.Entities
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using static MobileShop.Data.DataConstants.Dealer;
     public class Dealer
     {
         public int Id { get; init; }

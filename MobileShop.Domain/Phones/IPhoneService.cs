@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MobileShop.Domain.Phones.ServiceModels
+﻿namespace MobileShop.Domain.Phones.ServiceModels
 {
+    using System.Collections.Generic;
     public interface IPhoneService
     {
         public IEnumerable<PhoneBrandServiceModel> GetBrands();
 
+        IEnumerable<string> AllPhoneBrands();
+
+        IEnumerable<string> AllPhoneCategories();
+
         public IEnumerable<PhoneCategoryServiceModel> GetCategories();
+
+        public IList<PhoneIndexServiceModel> AllIndexPhones();
+        public int TotalPhones();
+        public int TotalUsers();
 
         public int Create(
                int brandId,
@@ -21,5 +24,14 @@ namespace MobileShop.Domain.Phones.ServiceModels
                int conditionId,
                string color,
                int dealerId);
+
+        PhoneQueryServiceModel All(
+            string brand,
+            string category,
+            string searchTerm,
+            int currentPage,
+            int phonesPerPage);
+
+     
     }
 }

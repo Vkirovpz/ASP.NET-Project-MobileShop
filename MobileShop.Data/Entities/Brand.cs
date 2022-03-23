@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using static MobileShop.Data.DataConstants.Brand;
-
-namespace MobileShop.Data.Entities
+﻿namespace MobileShop.Data.Entities
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using static MobileShop.Data.DataConstants.Brand;
     public class Brand
     {
         public int Id { get; init; }

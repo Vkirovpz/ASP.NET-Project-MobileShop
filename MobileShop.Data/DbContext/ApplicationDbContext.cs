@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using MobileShop.Data.Entities;
-
-namespace MobileShop.Data
+﻿namespace MobileShop.Data
 {
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
+    using MobileShop.Data.Entities;
     public class MobileShopDbContext : IdentityDbContext
     {
         public MobileShopDbContext(DbContextOptions<MobileShopDbContext> options)

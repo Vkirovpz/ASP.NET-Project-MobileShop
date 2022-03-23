@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
-using MobileShop.Data;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using MobileShop.Data.Entities;
-
-namespace MobileShop.Infrastructure
+﻿namespace MobileShop.Infrastructure
 {
+    using Microsoft.AspNetCore.Builder;
+    using MobileShop.Data;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.EntityFrameworkCore;
+    using System.Linq;
+    using MobileShop.Data.Entities;
     public static class ApplicationBuilderExtensions
     {
         public static IApplicationBuilder PrepareDatabase (this IApplicationBuilder app)

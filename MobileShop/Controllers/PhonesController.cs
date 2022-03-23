@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using MobileShop.Domain.Dealers;
-using MobileShop.Domain.Phones.ServiceModels;
-using MobileShop.Infrastructure;
-using MobileShop.Models.Phones;
-
-namespace MobileShop.Controllers
+﻿namespace MobileShop.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using MobileShop.Domain.Dealers;
+    using MobileShop.Domain.Phones.ServiceModels;
+    using MobileShop.Infrastructure;
+    using MobileShop.Models.Phones;
     public class PhonesController : Controller
     {
         private readonly IPhoneService phones;
@@ -21,10 +20,10 @@ namespace MobileShop.Controllers
         [Authorize]
         public IActionResult Add()
         {
-            //if (!this.dealers.IsDealer(this.user.getid()))
-            //{
-            //    return redirecttoaction(nameof(dealerscontroller.become), "dealers");
-            //}
+            if (!this.dealers.IsDealer(this.User.GetId()))
+            {
+                return RedirectToAction("Become", "Dealers");
+            }
 
             return View(new AddPhoneFormModel
             {
@@ -60,6 +59,29 @@ namespace MobileShop.Controllers
                 );
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult All([FromQuery] PhoneSearchQueryModel query)
+
+        {
+            var queryResult = this.phones.All(
+                query.Brand,
+                query.Category,
+                query.SearchTerm,
+                query.CurrentPage,
+                PhoneSearchQueryModel.PhonesPerPage);
+
+
+            var phoneBrands = this.phones.AllPhoneBrands();
+            var phoneCategories = this.phones.AllPhoneCategories();
+
+            query.Brands = phoneBrands;
+            query.Categories = phoneCategories;
+            query.TotalPhones = queryResult.TotalPhones;
+            query.Phones = queryResult.Phones;
+
+            return View(query);
+
         }
 
     }

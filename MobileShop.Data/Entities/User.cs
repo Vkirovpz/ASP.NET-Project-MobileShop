@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
-using static MobileShop.Data.DataConstants.User;
-
-namespace MobileShop.Data.Entities
+﻿namespace MobileShop.Data.Entities
 {
+    using Microsoft.AspNetCore.Identity;
+    using System.ComponentModel.DataAnnotations;
+    using static MobileShop.Data.DataConstants.User;
     public class User:IdentityUser
     {
 

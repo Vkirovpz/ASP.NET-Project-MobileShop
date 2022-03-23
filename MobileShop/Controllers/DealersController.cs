@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using MobileShop.Domain.Dealers;
-using MobileShop.Infrastructure;
-using MobileShop.Models.Dealers;
-
-namespace MobileShop.Controllers
+﻿namespace MobileShop.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using MobileShop.Domain.Dealers;
+    using MobileShop.Infrastructure;
+    using MobileShop.Models.Dealers;
     public class DealersController : Controller
     {
         private readonly IDealerService dealers;
