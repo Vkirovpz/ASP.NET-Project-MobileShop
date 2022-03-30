@@ -22,6 +22,8 @@
     </div>
 }
 
+<div class="mb-5"></div>
+
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         @if (firstPhone != null)
@@ -62,18 +64,33 @@
     </a>
 </div>
 
+<div class="mb-2"></div>
 
-@*<div class="row">
+<div class="row">
     <div class="col-12 text-center">
         <button class="btn btn-primary" id="statistics-button">Show Statistics</button>
     </div>
 </div>
 
+
 <div class="jumbotron d-none" id="statistics">
     <div class="row">
-        <h2 class="col-md-6 text-center" id="@Model.TotalPhones"></h2>
-        <h2 class="col-md-6 text-center" id="@Model.TotalUsers"></h2>
+        <h2 class="col-md-6 text-center" id="total-phones"></h2>
+        <h2 class="col-md-6 text-center" id="total-users"></h2>
     </div>
-</div>*@
+</div>
+
+@section Scripts {
+<script>
+    $('#statistics-button').on('click', ev => {
+        $.get('/api/statistics', (data) => {
+            $('#total-phones').text(data.totalPhones + " Phones");
+            $('#total-users').text(data.totalUsers + " Users");
+            $('#statistics').removeClass('d-none');
+            $('#statistics-button').hide();
+        });
+    });
+</script>
+}
 
 

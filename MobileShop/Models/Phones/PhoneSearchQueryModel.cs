@@ -5,13 +5,14 @@
     using System.ComponentModel.DataAnnotations;
     public class PhoneSearchQueryModel
     {
-        public const int PhonesPerPage = 3;
+        public const int PhonesPerPage = 6;
 
         public int CurrentPage { get; init; } = 1;
 
         public int TotalPhones { get; set; }
 
         public string Brand { get; init; }
+
         public string Category { get; init; }
 
 

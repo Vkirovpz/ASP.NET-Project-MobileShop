@@ -12,6 +12,8 @@ namespace MobileShop
     using MobileShop.Domain.Dealers;
     using MobileShop.Domain.Phones.ServiceModels;
     using MobileShop.Infrastructure;
+    using MobileShop.Domain.Statistics;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -41,6 +43,7 @@ namespace MobileShop
             services.AddControllersWithViews();
             services.AddTransient<IPhoneService, PhoneService>();
             services.AddTransient<IDealerService, DealerService>();
+            services.AddTransient<IStatisticsService, StatisticsService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

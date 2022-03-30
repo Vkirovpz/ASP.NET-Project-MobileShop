@@ -1,12 +1,7 @@
-﻿using MobileShop.Domain.Phones.ServiceModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MobileShop.Models.Home
+﻿namespace MobileShop.Models.Home
 {
+    using MobileShop.Domain.Phones.ServiceModels;
+    using System.Collections.Generic;
     public class IndexViewModel
     {
         public int TotalPhones { get; init; }

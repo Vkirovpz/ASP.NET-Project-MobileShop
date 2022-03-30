@@ -71,12 +71,8 @@
                 query.CurrentPage,
                 PhoneSearchQueryModel.PhonesPerPage);
 
-
-            var phoneBrands = this.phones.AllPhoneBrands();
-            var phoneCategories = this.phones.AllPhoneCategories();
-
-            query.Brands = phoneBrands;
-            query.Categories = phoneCategories;
+            query.Brands = this.phones.AllPhoneBrands();
+            query.Categories = this.phones.AllPhoneCategories();
             query.TotalPhones = queryResult.TotalPhones;
             query.Phones = queryResult.Phones;
 
