@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using static MobileShop.Data.DataConstants.Phone;
-    public class AddPhoneFormModel
+    public class PhoneFormModel
     {
         [Required]
         [Display(Name = "Brand")]
@@ -37,8 +37,6 @@
         public int CategoryId { get; init; }
 
         public IEnumerable<PhoneCategoryServiceModel> Categories { get; set; }
-
-        public int DealerId { get; init; }
 
     }
 }

@@ -1,4 +1,4 @@
-﻿@model PhoneSearchQueryModel
+﻿@model AllPhonesQueryModel
 
 @{
     ViewBag.Title = "All phones";
@@ -59,7 +59,7 @@
         previousPage = 1;
     }
 
-    var maxPage = Math.Ceiling((double)Model.TotalPhones / PhoneSearchQueryModel.PhonesPerPage);
+    var maxPage = Math.Ceiling((double)Model.TotalPhones / AllPhonesQueryModel.PhonesPerPage);
 }
 
 <div class="row">

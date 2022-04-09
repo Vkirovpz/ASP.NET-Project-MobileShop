@@ -3,26 +3,25 @@
     using System.Collections.Generic;
     public interface IPhoneService
     {
-        public IEnumerable<PhoneBrandServiceModel> GetBrands();
+        IEnumerable<PhoneBrandServiceModel> GetBrands();
 
         IEnumerable<string> AllPhoneBrands();
 
         IEnumerable<string> AllPhoneCategories();
 
-        public IEnumerable<PhoneCategoryServiceModel> GetCategories();
+        IEnumerable<PhoneCategoryServiceModel> GetCategories();
 
-        public IList<PhoneIndexServiceModel> AllIndexPhones();
-        public int TotalPhones();
-        public int TotalUsers();
+        IList<PhoneIndexServiceModel> AllIndexPhones();
 
-        public int Create(
-               int brandId,
+        int Create(
+               
                string model,
                string overview,
-               decimal price,
                string imageUrl,
-               int conditionId,
                string color,
+               decimal price,
+               int brandId,
+               int categoryId,
                int dealerId);
 
         PhoneQueryServiceModel All(
@@ -32,6 +31,22 @@
             int currentPage,
             int phonesPerPage);
 
-     
+        IEnumerable<PhoneServiceModel> ByUser(string userId);
+        PhoneDetailServiceModel Details(int phoneId);
+
+        bool Edit(
+            int id,
+            string model,
+            string color,
+            string overview,
+            string imageUrl,
+            decimal price,
+            int brandId,
+            int categoryId);
+           
+
+        void Delete(PhoneServiceModel phone);
+
+        bool isByDealer(int phoneId, int dealerId);
     }
 }

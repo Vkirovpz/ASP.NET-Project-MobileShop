@@ -14,27 +14,6 @@
             this.data = data;
         }
 
-        public int Create(int brandId, string model, string overview, decimal price, string imageUrl, int categoryId, string color, int dealerId)
-        {
-            var phoneData = new Phone
-            {
-                BrandId = brandId,
-                Model = model,
-                Overview = overview,
-                Price = price,
-                ImageUrl = imageUrl,
-                CategoryId = categoryId,
-                Color = color,
-                DealerId = dealerId
-            };
-
-            this.data.Phones.Add(phoneData);
-
-            this.data.SaveChanges();
-
-            return phoneData.Id;
-        }
-
         public IEnumerable<PhoneBrandServiceModel> GetBrands()
         => this.data
                 .Brands
@@ -62,6 +41,13 @@
                 })
                 .ToList();
 
+        public IEnumerable<string> AllPhoneCategories()
+       => this.data
+               .Phones
+               .Select(p => p.Category.Name)
+               .Distinct()
+               .ToList();
+
         private IEnumerable<PhoneServiceModel> GetPhones(IQueryable<Phone> phoneQuery)
             => phoneQuery
             .Select(p => new PhoneServiceModel()
@@ -69,7 +55,10 @@
                 Id = p.Id,
                 Brand = p.Brand.Name,
                 Model = p.Model,
-                ImageUrl = p.ImageUrl
+                Color = p.Color,
+                Price = p.Price,
+                ImageUrl = p.ImageUrl,
+                Category = p.Category.Name
             }).ToList();
 
         public IList<PhoneIndexServiceModel> AllIndexPhones()
@@ -82,26 +71,14 @@
                     Model = p.Model,
                     ImageUrl = p.ImageUrl
                 })
-                .OrderBy(p=> p.Id)
+                .OrderBy(p => p.Id)
                 .Take(3)
                 .ToList();
 
             return phones;
         }
 
-        public int TotalPhones()
-        {
-            var total = this.data.Phones.Count();
-            return total;
-        }
-
-        public int TotalUsers()
-        {
-            var total = this.data.Users.Count();
-            return total;
-        }
-
-        public PhoneQueryServiceModel All(string brand,string category, string searchTerm, int currentPage, int phonesPerPage)
+        public PhoneQueryServiceModel All(string brand, string category, string searchTerm, int currentPage, int phonesPerPage)
         {
             var phonesQuery = this.data.Phones.AsQueryable();
 
@@ -141,11 +118,85 @@
             };
         }
 
-        public IEnumerable<string> AllPhoneCategories()
-        => this.data
-                .Phones
-                .Select(p => p.Category.Name)
-                .Distinct()
-                .ToList();
+        public IEnumerable<PhoneServiceModel> ByUser(string userId)
+        => GetPhones(this.data.Phones
+            .Where(p => p.Dealer.UserId == userId));
+
+        public PhoneDetailServiceModel Details(int phoneId)
+        => this.data.Phones
+            .Where(p => p.Id == phoneId)
+            .Select(p => new PhoneDetailServiceModel
+            {
+                Id = p.Id,
+                Brand = p.Brand.Name,
+                Model = p.Model,
+                Color = p.Color,
+                Price = p.Price,
+                ImageUrl = p.ImageUrl,
+                Category = p.Category.Name,
+                Overview = p.Overview,
+                DealerId = p.DealerId,
+                DealerName = p.Dealer.Name,
+                UserId = p.Dealer.UserId   
+            })
+            .FirstOrDefault();
+
+        public bool Edit(int id, string model, string color, string overview, string imageUrl, decimal price, int brandId, int categoryId)
+        {
+            var phoneData = this.data.Phones.Find(id);
+
+            if (phoneData == null)
+            {
+                return false;
+            }
+
+            phoneData.BrandId = brandId;
+            phoneData.CategoryId = categoryId;
+            phoneData.Model = model;
+            phoneData.Color = color;
+            phoneData.Overview = overview;
+            phoneData.ImageUrl = imageUrl;
+            phoneData.Price = price;
+
+            this.data.SaveChanges();
+
+            return true;
+        }
+
+        public void Delete(PhoneServiceModel phone)
+        {
+            var phoneData = this.data.Phones
+                .Where(p => p.Id == phone.Id)
+                .FirstOrDefault();
+
+            this.data.Phones.Remove(phoneData);
+            this.data.SaveChanges();
+        }
+
+        public bool isByDealer(int phoneId, int dealerId)
+        => this.data.Phones
+            .Any(p => p.Id == phoneId && p.DealerId == dealerId);
+
+        public int Create(string model, string overview, string imageUrl, string color, decimal price, int brandId, int categoryId, int dealerId)
+        {
+            
+            var phoneData = new Phone
+            {
+                BrandId = brandId,
+                Model = model,
+                Overview = overview,
+                Price = price,
+                ImageUrl = imageUrl,
+                CategoryId = categoryId,
+                Color = color,
+                DealerId = dealerId
+            };
+
+            this.data.Phones.Add(phoneData);
+
+            this.data.SaveChanges();
+
+            return phoneData.Id;
+        }
     }
 }

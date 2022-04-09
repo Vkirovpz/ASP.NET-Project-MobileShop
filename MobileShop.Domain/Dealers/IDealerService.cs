@@ -2,11 +2,11 @@
 {
     public interface IDealerService
     {
-        public bool IsDealer(string userId);
+        bool IsDealer(string userId);
 
-        public int IdByUser(string userId);
+        int IdByUser(string userId);
 
-        public int Create(string name, string phoneNumber, string userId);
+        int Create(string name, string phoneNumber, string userId);
 
     }
 }

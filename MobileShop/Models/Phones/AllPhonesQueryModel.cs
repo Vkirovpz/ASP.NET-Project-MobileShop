@@ -3,7 +3,7 @@
     using MobileShop.Domain.Phones.ServiceModels;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    public class PhoneSearchQueryModel
+    public class AllPhonesQueryModel
     {
         public const int PhonesPerPage = 6;
 

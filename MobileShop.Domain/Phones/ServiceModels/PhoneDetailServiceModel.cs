@@ -4,10 +4,10 @@
     {
         public string Overview { get; init; }
 
-        public int DealerID { get; init; }
+        public int DealerId { get; init; }
 
         public string DealerName { get; init; }
 
-        public string UserID { get; init; }
+        public string UserId { get; init; }
     }
 }

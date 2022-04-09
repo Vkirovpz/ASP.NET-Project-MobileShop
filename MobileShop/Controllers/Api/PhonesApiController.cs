@@ -2,19 +2,23 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using MobileShop.Domain.Phones.ServiceModels;
-    using System.Collections;
+    using MobileShop.Models.Api.Phones;
 
     [ApiController]
     [Route("api/phones")]
-    public class PhonesApiController :ControllerBase
+    public class PhonesApiController : ControllerBase
     {
-        private readonly IPhoneService phones;
+        private IPhoneService phones;
 
-        public PhonesApiController(IPhoneService phones)
-        {
-            this.phones = phones;
-        }
+        public PhonesApiController(IPhoneService phones)=> this.phones = phones;
+        
 
-     
+        public PhoneQueryServiceModel All([FromQuery] AllPhonesApiRequestModel query)
+        => this.phones.All(
+                query.Brand,
+                query.Category,
+                query.SearchTerm,
+                query.CurrentPage,
+                query.PhonesPerPage);
     }
 }

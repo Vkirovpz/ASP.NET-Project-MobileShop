@@ -2,28 +2,32 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using MobileShop.Domain.Phones.ServiceModels;
+    using MobileShop.Domain.Statistics;
     using MobileShop.Models;
     using MobileShop.Models.Home;
     using System.Diagnostics;
     public class HomeController : Controller
     {
         private readonly IPhoneService phones;
+        private readonly IStatisticsService statistics;
 
-        public HomeController(IPhoneService phones)
+        public HomeController(IPhoneService phones, IStatisticsService statistics)
         {
             this.phones = phones;
+            this.statistics = statistics;
         }
 
         public IActionResult Index()
         {
-            var totalPhones = this.phones.TotalPhones();
-            var totalUsers = this.phones.TotalUsers();
+            //var totalPhones = this.phones.TotalPhones();
+            //var totalUsers = this.phones.TotalUsers();
+            var totalStatistics = this.statistics.Total();
             var phonesToShow = this.phones.AllIndexPhones();
 
             return View(new IndexViewModel
             {
-                TotalPhones = totalPhones,
-                TotalUsers = totalUsers,
+                TotalPhones = totalStatistics.TotalPhones,
+                TotalUsers = totalStatistics.TotalUsers,
                 Phones = phonesToShow
             });
         }
