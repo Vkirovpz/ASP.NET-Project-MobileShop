@@ -14,6 +14,7 @@ namespace MobileShop
     using MobileShop.Infrastructure;
     using MobileShop.Domain.Statistics;
     using Microsoft.AspNetCore.Mvc;
+    using MobileShop.Data.Entities;
 
     public class Startup
     {
@@ -32,7 +33,7 @@ namespace MobileShop
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options =>
+            services.AddDefaultIdentity<User>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireDigit = false;

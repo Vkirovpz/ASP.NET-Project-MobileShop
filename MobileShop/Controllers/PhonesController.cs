@@ -119,14 +119,14 @@
         {
             var userId = this.User.GetId();
 
-            if (!this.dealers.IsDealer(userId))
+            if (!this.dealers.IsDealer(userId) && !User.IsAdmin())
             {
                 return RedirectToAction(nameof(DealersController.Become), "Dealers");
             }
 
             var phone = this.phones.Details(id);
 
-            if (phone.UserId != userId)
+            if (phone.UserId != userId && !User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -152,12 +152,12 @@
         {
             var dealerId = this.dealers.IdByUser(this.User.GetId());
 
-            if (dealerId == 0)
+            if (dealerId == 0 && !User.IsAdmin())
             {
                 return RedirectToAction(nameof(DealersController.Become), "Dealers");
             }
 
-            if (!this.phones.isByDealer(id, dealerId))
+            if (!this.phones.isByDealer(id, dealerId) && !User.IsAdmin())
             {
                 return BadRequest();
             }

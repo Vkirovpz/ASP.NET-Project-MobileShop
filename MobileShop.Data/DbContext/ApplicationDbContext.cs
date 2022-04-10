@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using MobileShop.Data.Entities;
-    public class MobileShopDbContext : IdentityDbContext
+    public class MobileShopDbContext : IdentityDbContext<User>
     {
         public MobileShopDbContext(DbContextOptions<MobileShopDbContext> options)
             : base(options)
