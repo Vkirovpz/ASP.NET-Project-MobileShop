@@ -1,5 +1,6 @@
 ﻿namespace MobileShop.Controllers
 {
+    using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using MobileShop.Domain.Phones.ServiceModels;
     using MobileShop.Domain.Statistics;
@@ -19,8 +20,6 @@
 
         public IActionResult Index()
         {
-            //var totalPhones = this.phones.TotalPhones();
-            //var totalUsers = this.phones.TotalUsers();
             var totalStatistics = this.statistics.Total();
             var phonesToShow = this.phones.AllIndexPhones();
 

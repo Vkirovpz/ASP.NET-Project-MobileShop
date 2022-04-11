@@ -6,11 +6,11 @@
        
         public int BrandId { get; init; }
 
-        public string Brand { get; init; }
+        public string BrandName { get; init; }
 
         public int CategoryId { get; init; }
 
-        public string Category { get; init; }
+        public string CategoryName { get; init; }
 
         public string Model { get; init; }
 

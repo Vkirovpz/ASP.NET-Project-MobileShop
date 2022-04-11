@@ -30,27 +30,27 @@
             @if (firstPhone != null)
             {
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="@firstPhone.ImageUrl" alt="@firstPhone.Brand @firstPhone.Model">
+                    <img class="d-block w-100" src="@firstPhone.ImageUrl" alt="@firstPhone.BrandName @firstPhone.Model">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5><a asp-controller="Phones" asp-action="Details" asp-route-id="@firstPhone.Id">@firstPhone.Brand @firstPhone.Model</a></h5>
+                        <h5><a asp-controller="Phones" asp-action="Details" asp-route-id="@firstPhone.Id">@firstPhone.BrandName @firstPhone.Model</a></h5>
                     </div>
                 </div>
             }
             @if (secondPhone != null)
             {
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="@secondPhone.ImageUrl" alt="@secondPhone.Brand @secondPhone.Model">
+                    <img class="d-block w-100" src="@secondPhone.ImageUrl" alt="@secondPhone.BrandName @secondPhone.Model">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5><a asp-controller="Phones" asp-action="Details" asp-route-id="@secondPhone.Id">@secondPhone.Brand @secondPhone.Model</a></h5>
+                        <h5><a asp-controller="Phones" asp-action="Details" asp-route-id="@secondPhone.Id">@secondPhone.BrandName @secondPhone.Model</a></h5>
                     </div>
                 </div>
             }
             @if (thirdPhone != null)
             {
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="@thirdPhone.ImageUrl" alt="@thirdPhone.Brand @thirdPhone.Model">
+                    <img class="d-block w-100" src="@thirdPhone.ImageUrl" alt="@thirdPhone.BrandName @thirdPhone.Model">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5><a asp-controller="Phones" asp-action="Details" asp-route-id="@thirdPhone.Id">@thirdPhone.Brand @thirdPhone.Model</a></h5>
+                        <h5><a asp-controller="Phones" asp-action="Details" asp-route-id="@thirdPhone.Id">@thirdPhone.BrandName @thirdPhone.Model</a></h5>
                     </div>
                 </div>
             }

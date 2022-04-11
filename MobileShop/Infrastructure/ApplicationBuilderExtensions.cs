@@ -8,7 +8,7 @@
     using MobileShop.Data.Entities;
     using System;
     using Microsoft.AspNetCore.Identity;
-    using static WebConstants;
+    using static MobileShop.Areas.Admin.AdminConstants;
     using System.Threading.Tasks;
 
     public static class ApplicationBuilderExtensions

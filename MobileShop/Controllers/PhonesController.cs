@@ -1,5 +1,6 @@
 ﻿namespace MobileShop.Controllers
 {
+    using AutoMapper;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using MobileShop.Domain.Dealers;
@@ -10,11 +11,13 @@
     {
         private readonly IPhoneService phones;
         private readonly IDealerService dealers;
+        private readonly IMapper mapper;
 
-        public PhonesController(IPhoneService phones, IDealerService dealers)
+        public PhonesController(IPhoneService phones, IDealerService dealers, IMapper mapper)
         {
             this.phones = phones;
             this.dealers = dealers;
+            this.mapper = mapper;
         }
 
         [Authorize]
@@ -131,18 +134,11 @@
                 return Unauthorized();
             }
 
-            return View(new PhoneFormModel
-            {
-                Model = phone.Model,
-                BrandId = phone.BrandId,
-                CategoryId = phone.CategoryId,
-                Color = phone.Color,
-                Overview = phone.Overview,
-                ImageUrl = phone.ImageUrl,
-                Price = phone.Price,
-                Brands = this.phones.GetBrands(),
-                Categories = this.phones.GetCategories()
-            });
+            var phoneForm = this.mapper.Map<PhoneFormModel>(phone);
+            phoneForm.Brands = this.phones.GetBrands();
+            phoneForm.Categories = this.phones.GetCategories();
+
+            return View(phoneForm);
 
         }
 

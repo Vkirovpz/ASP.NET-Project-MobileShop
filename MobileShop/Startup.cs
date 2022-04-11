@@ -44,6 +44,8 @@ namespace MobileShop
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<MobileShopDbContext>();
 
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddControllersWithViews(options =>
             {
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
@@ -69,7 +71,7 @@ namespace MobileShop
                 app.UseHsts();
             }
             app
-                .UseHttpsRedirection()
+            .UseHttpsRedirection()
             .UseStaticFiles()
             .UseRouting()
             .UseAuthentication()
@@ -77,8 +79,10 @@ namespace MobileShop
             .UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "Areas",
+                    pattern: "/{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });
             

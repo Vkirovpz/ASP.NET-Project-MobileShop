@@ -1,5 +1,7 @@
 ﻿namespace MobileShop.Domain.Phones
 {
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
     using MobileShop.Data;
     using MobileShop.Data.Entities;
     using MobileShop.Domain.Phones.ServiceModels;
@@ -8,10 +10,12 @@
     public class PhoneService : IPhoneService
     {
         private readonly MobileShopDbContext data;
+        private readonly IMapper mapper;
 
-        public PhoneService(MobileShopDbContext data)
+        public PhoneService(MobileShopDbContext data, IMapper mapper)
         {
             this.data = data;
+            this.mapper = mapper;
         }
 
         public IEnumerable<PhoneBrandServiceModel> GetBrands()
@@ -53,24 +57,26 @@
             .Select(p => new PhoneServiceModel()
             {
                 Id = p.Id,
-                Brand = p.Brand.Name,
+                BrandName = p.Brand.Name,
                 Model = p.Model,
                 Color = p.Color,
                 Price = p.Price,
                 ImageUrl = p.ImageUrl,
-                Category = p.Category.Name
+                CategoryName = p.Category.Name
             }).ToList();
 
         public IList<PhoneIndexServiceModel> AllIndexPhones()
         {
-            var phones = this.data.Phones
-                .Select(p => new PhoneIndexServiceModel
-                {
-                    Id = p.Id,
-                    Brand = p.Brand.Name,
-                    Model = p.Model,
-                    ImageUrl = p.ImageUrl
-                })
+            var phones = this.data
+                .Phones
+                .ProjectTo<PhoneIndexServiceModel>(this.mapper.ConfigurationProvider)
+                //.Select(p => new PhoneIndexServiceModel
+                //{
+                //    Id = p.Id,
+                //    Brand = p.Brand.Name,
+                //    Model = p.Model,
+                //    ImageUrl = p.ImageUrl
+                //})
                 .OrderBy(p => p.Id)
                 .Take(3)
                 .ToList();
@@ -123,22 +129,26 @@
             .Where(p => p.Dealer.UserId == userId));
 
         public PhoneDetailServiceModel Details(int phoneId)
-        => this.data.Phones
+        => this.data
+            .Phones
             .Where(p => p.Id == phoneId)
-            .Select(p => new PhoneDetailServiceModel
-            {
-                Id = p.Id,
-                Brand = p.Brand.Name,
-                Model = p.Model,
-                Color = p.Color,
-                Price = p.Price,
-                ImageUrl = p.ImageUrl,
-                Category = p.Category.Name,
-                Overview = p.Overview,
-                DealerId = p.DealerId,
-                DealerName = p.Dealer.Name,
-                UserId = p.Dealer.UserId   
-            })
+            .ProjectTo<PhoneDetailServiceModel>(this.mapper.ConfigurationProvider)
+            //.Select(p => new PhoneDetailServiceModel
+            //{
+            //    Id = p.Id,
+            //    BrandId = p.BrandId,
+            //    Brand = p.Brand.Name,
+            //    Model = p.Model,
+            //    Color = p.Color,
+            //    Price = p.Price,
+            //    ImageUrl = p.ImageUrl,
+            //    CategoryId = p.CategoryId,
+            //    Category = p.Category.Name,
+            //    Overview = p.Overview,
+            //    DealerId = p.DealerId,
+            //    DealerName = p.Dealer.Name,
+            //    UserId = p.Dealer.UserId
+            //})
             .FirstOrDefault();
 
         public bool Edit(int id, string model, string color, string overview, string imageUrl, decimal price, int brandId, int categoryId)
