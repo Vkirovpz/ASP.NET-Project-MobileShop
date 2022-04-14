@@ -1,0 +1,29 @@
+﻿@model PhoneDetailServiceModel
+
+<h1 class="my-4" >
+    @Model.BrandName @Model.Model
+</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <img class="img-fluid" src="@Model.ImageUrl" alt="">
+    </div>
+
+    <div class="col-md-4">
+        <h3 class="my-3">Details:</h3>
+        <ul>
+            <li>Brand: @Model.BrandName</li>
+            <li>Model: @Model.Model</li>
+            <li>Category: @Model.CategoryName</li>
+            <li>Color: @Model.Color</li>
+            <li>Dealer: @Model.DealerName</li>
+            <li>Price: @Model.Price</li>
+            <li>Phone Number: @Model.DealerPhoneNumber</li>
+        </ul>
+
+        <h3 class="my-3">Description:</h3>
+        <p>@Model.Overview</p>
+    </div>
+
+</div>
+

@@ -25,11 +25,11 @@
                int dealerId);
 
         PhoneQueryServiceModel All(
-            string brand,
-            string category,
-            string searchTerm,
-            int currentPage,
-            int phonesPerPage);
+            string brand = null,
+            string category = null,
+            string searchTerm = null,
+            int currentPage = 1,
+            int phonesPerPage = int.MaxValue);
 
         IEnumerable<PhoneServiceModel> ByUser(string userId);
         PhoneDetailServiceModel Details(int phoneId);

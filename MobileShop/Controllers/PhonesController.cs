@@ -40,7 +40,9 @@
         [Authorize]
         public IActionResult Add(PhoneFormModel phone)
         {
-            var dealerId = this.dealers.IdByUser(this.User.GetId());
+            var userId = this.User.GetId();
+
+            var dealerId = this.dealers.IdByUser(userId);
 
             if (dealerId == 0)
             {
@@ -66,7 +68,7 @@
                 dealerId
                 );
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Mine", "Phones");
         }
 
         public IActionResult All([FromQuery] AllPhonesQueryModel query)
@@ -114,7 +116,7 @@
 
             this.phones.Delete(phone);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Mine", "Phones");
         }
 
         [Authorize]
@@ -176,7 +178,14 @@
                 phone.BrandId,
                 phone.CategoryId);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction("Mine", "Phones");
+        }
+
+        public IActionResult Details(int id)
+        {
+            var phone = this.phones.Details(id);
+
+            return View(phone);
         }
     }
 }

@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
@@ -17,13 +18,15 @@
     {
         private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;
-
+        private readonly IEmailSender emailSender;
         public RegisterModel(
             UserManager<User> userManager,
-            SignInManager<User> signInManager)
+            SignInManager<User> signInManager,
+            IEmailSender emailSender)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.emailSender = emailSender;
         }
 
         [BindProperty]
@@ -37,7 +40,7 @@
             [EmailAddress]
             public string Email { get; set; }
 
-            [Display(Name ="Full Name")]
+            [Display(Name = "Full Name")]
             [StringLength(FullNameMaxLength, MinimumLength = FullNameMinLength)]
             public string FullName { get; set; }
 
@@ -63,17 +66,20 @@
 
             if (ModelState.IsValid)
             {
-                var user = new User { 
-                    UserName = Input.Email, 
+                var user = new User
+                {
+                    UserName = Input.Email,
                     Email = Input.Email,
-                    FullName = Input.FullName};
+                    FullName = Input.FullName
+                };
 
                 var result = await this.userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
-                        await this.signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                    await this.emailSender.SendEmailAsync(user.Email, "Registration", "Welcome to valentin's site :");
+                    await this.signInManager.SignInAsync(user, isPersistent: false);
+                    return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
                 {

@@ -16,7 +16,7 @@
         public string Category { get; init; }
 
 
-        [Display(Name = "Search by text")]
+        [Display(Name = "Search")]
         public string SearchTerm { get; init; }
 
         public IEnumerable<string> Brands { get; set; }

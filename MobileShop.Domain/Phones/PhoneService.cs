@@ -70,21 +70,19 @@
             var phones = this.data
                 .Phones
                 .ProjectTo<PhoneIndexServiceModel>(this.mapper.ConfigurationProvider)
-                //.Select(p => new PhoneIndexServiceModel
-                //{
-                //    Id = p.Id,
-                //    Brand = p.Brand.Name,
-                //    Model = p.Model,
-                //    ImageUrl = p.ImageUrl
-                //})
-                .OrderBy(p => p.Id)
+                .OrderByDescending(p => p.Id)
                 .Take(3)
                 .ToList();
 
             return phones;
         }
 
-        public PhoneQueryServiceModel All(string brand, string category, string searchTerm, int currentPage, int phonesPerPage)
+        public PhoneQueryServiceModel All(
+            string brand = null,
+            string category = null,
+            string searchTerm = null,
+            int currentPage = 1,
+            int phonesPerPage = int.MaxValue)
         {
             var phonesQuery = this.data.Phones.AsQueryable();
 
@@ -133,22 +131,6 @@
             .Phones
             .Where(p => p.Id == phoneId)
             .ProjectTo<PhoneDetailServiceModel>(this.mapper.ConfigurationProvider)
-            //.Select(p => new PhoneDetailServiceModel
-            //{
-            //    Id = p.Id,
-            //    BrandId = p.BrandId,
-            //    Brand = p.Brand.Name,
-            //    Model = p.Model,
-            //    Color = p.Color,
-            //    Price = p.Price,
-            //    ImageUrl = p.ImageUrl,
-            //    CategoryId = p.CategoryId,
-            //    Category = p.Category.Name,
-            //    Overview = p.Overview,
-            //    DealerId = p.DealerId,
-            //    DealerName = p.Dealer.Name,
-            //    UserId = p.Dealer.UserId
-            //})
             .FirstOrDefault();
 
         public bool Edit(int id, string model, string color, string overview, string imageUrl, decimal price, int brandId, int categoryId)

@@ -10,6 +10,6 @@ namespace MobileShop.Domain.Phones.ServiceModels
     {
         public int TotalPhones { get; init; }
         public int TotalUsers { get; init; }
-        public List<PhoneIndexServiceModel> Phones { get; init; }
+        public IList<PhoneIndexServiceModel> Phones { get; init; }
     }
 }

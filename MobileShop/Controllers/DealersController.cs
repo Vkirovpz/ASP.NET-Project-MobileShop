@@ -35,7 +35,7 @@
 
             dealers.Create(dealer.Name, dealer.PhoneNumber, userId);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(PhonesController.All), "Phones");
 
         }
     }

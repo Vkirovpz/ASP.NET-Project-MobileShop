@@ -15,6 +15,8 @@ namespace MobileShop
     using MobileShop.Domain.Statistics;
     using Microsoft.AspNetCore.Mvc;
     using MobileShop.Data.Entities;
+    using Microsoft.AspNetCore.Identity.UI.Services;
+    using MobileShop.Domain.EmailSender;
 
     public class Startup
     {
@@ -45,7 +47,7 @@ namespace MobileShop
                 .AddEntityFrameworkStores<MobileShopDbContext>();
 
             services.AddAutoMapper(typeof(Startup));
-
+            services.AddAntiforgery();
             services.AddControllersWithViews(options =>
             {
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
@@ -54,6 +56,15 @@ namespace MobileShop
             services.AddTransient<IPhoneService, PhoneService>();
             services.AddTransient<IDealerService, DealerService>();
             services.AddTransient<IStatisticsService, StatisticsService>();
+            services.AddTransient<IEmailSender, EmailSender>(i =>
+                new EmailSender
+                (
+                    Configuration["EmailSender:Host"],
+                    Configuration.GetValue<int>("EmailSender:Port"),
+                    Configuration.GetValue<bool>("EmailSender:EnableSSL"),
+                    Configuration["EmailSender:UserName"],
+                    Configuration["EmailSender:Password"]
+                ));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
