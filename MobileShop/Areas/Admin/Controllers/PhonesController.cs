@@ -7,10 +7,7 @@
     {
         private readonly IPhoneService phones;
 
-        public PhonesController(IPhoneService phones)
-        {
-            this.phones = phones;
-        }
+        public PhonesController(IPhoneService phones) => this.phones = phones;
 
         public IActionResult All()
         {

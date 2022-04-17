@@ -93,6 +93,13 @@
         [Authorize]
         public IActionResult Mine()
         {
+            var dealerId = this.dealers.IdByUser(this.User.GetId());
+
+            if (dealerId == 0)
+            {
+                return RedirectToAction(nameof(DealersController.Become), "Dealers");
+            }
+
             var myPhones = this.phones.ByUser(this.User.GetId());
 
             return View(myPhones);

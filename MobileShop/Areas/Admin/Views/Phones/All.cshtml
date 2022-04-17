@@ -27,6 +27,7 @@
     <td scope="col">@phone.Color</td>
     <td scope="col">@phone.Price</td>
     <td scope="col">
+        <a asp-area="" asp-controller="Phones" asp-action="Details" asp-route-id="@phone.Id" class="btn btn-primary">Details</a>
         <a asp-area="" asp-controller="Phones" asp-action="Delete" asp-route-id="@phone.Id" class="btn btn-danger float-right ml-3">Delete</a>
         <a asp-area="" asp-controller="Phones" asp-action="Edit" asp-route-id="@phone.Id" class="btn btn-warning float-right ml-3">Edit</a>
 </tr>}

@@ -71,7 +71,7 @@
                 .Phones
                 .ProjectTo<PhoneIndexServiceModel>(this.mapper.ConfigurationProvider)
                 .OrderByDescending(p => p.Id)
-                .Take(3)
+                .Take(5)
                 .ToList();
 
             return phones;

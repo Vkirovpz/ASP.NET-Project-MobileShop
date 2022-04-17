@@ -47,7 +47,11 @@ namespace MobileShop
                 .AddEntityFrameworkStores<MobileShopDbContext>();
 
             services.AddAutoMapper(typeof(Startup));
+
             services.AddAntiforgery();
+
+            services.AddMemoryCache();
+
             services.AddControllersWithViews(options =>
             {
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
