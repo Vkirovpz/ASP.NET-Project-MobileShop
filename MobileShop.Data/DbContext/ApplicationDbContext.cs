@@ -18,6 +18,8 @@
 
         public DbSet<Dealer> Dealers { get; init; }
 
+        public DbSet<CartItem> CartItems { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
