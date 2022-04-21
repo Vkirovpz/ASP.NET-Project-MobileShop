@@ -34,7 +34,18 @@
 
             dealers.Create(dealer.Name, dealer.PhoneNumber, userId);
 
-            return RedirectToAction(nameof(PhonesController.All), "Phones");
+            return RedirectToAction(nameof(DealersController.All), "Dealers");
+
+        }
+
+        public IActionResult All([FromQuery] AllDealersQueryModel query)
+
+        {
+            var queryResult = this.dealers.All(query.SearchTerm);
+
+            query.Dealers = queryResult.Dealers;
+
+            return View(query);
 
         }
     }

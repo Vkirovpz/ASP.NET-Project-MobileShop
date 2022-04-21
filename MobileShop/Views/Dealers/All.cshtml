@@ -1,1 +1,27 @@
-﻿
+﻿@model AllDealersQueryModel
+
+@{
+    ViewBag.Title = "All Dealers";
+}
+
+<form method="get">
+    <div class="row mb-5">
+        
+        <div class="form-group col-md-2">
+            <label asp-for="SearchTerm"></label>
+            <input asp-for="SearchTerm" class="form-control">
+        </div>
+
+        <div class="form-group col-md-3" style="margin-top: auto; margin-bottom: auto;">
+            <input class="btn btn-primary" type="submit" value="Search" />
+        </div>
+
+    </div>
+</form>
+
+<partial name="_DealersPartial" model="@Model.Dealers" />
+
+@if (!Model.Dealers.Any())
+{
+    <h2 class="text-center">No dealers found by the given criteria.</h2>
+}

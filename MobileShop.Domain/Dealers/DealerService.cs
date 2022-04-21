@@ -52,9 +52,7 @@
             }).ToList();
 
         public AllDealersServiceModel All(
-           string searchTerm = null,
-           int currentPage = 1,
-           int dealersPerPage = int.MaxValue)
+           string searchTerm = null)
         {
             var dealersQuery = this.data.Dealers.AsQueryable();
 
@@ -67,15 +65,10 @@
 
             var totalDealers= dealersQuery.Count();
 
-            var dealers = GetDealers(dealersQuery
-                .Skip((currentPage - 1) * dealersPerPage)
-                .Take(dealersPerPage));
+            var dealers = GetDealers(dealersQuery);
 
             return new AllDealersServiceModel
             {
-                TotalDealers = totalDealers,
-                CurrentPage = currentPage,
-                DealersPerPage = dealersPerPage,
                 Dealers = dealers
             };
         }

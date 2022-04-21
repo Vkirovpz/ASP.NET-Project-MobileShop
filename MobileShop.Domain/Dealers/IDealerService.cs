@@ -1,4 +1,6 @@
-﻿namespace MobileShop.Domain.Dealers
+﻿using MobileShop.Domain.Dealers.Models;
+
+namespace MobileShop.Domain.Dealers
 {
     public interface IDealerService
     {
@@ -8,5 +10,7 @@
 
         int Create(string name, string phoneNumber, string userId);
 
+        public AllDealersServiceModel All(
+           string searchTerm = null);
     }
 }

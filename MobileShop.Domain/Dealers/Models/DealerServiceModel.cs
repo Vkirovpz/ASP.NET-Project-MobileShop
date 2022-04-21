@@ -1,6 +1,5 @@
 ﻿namespace MobileShop.Domain.Dealers.Models
 {
-    using MobileShop.Data.Entities;
     public class DealerServiceModel
     {
         public int Id { get; init; }
