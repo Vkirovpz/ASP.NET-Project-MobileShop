@@ -32,7 +32,7 @@
                 return View(dealer);
             }
 
-            dealers.Create(dealer.Name, dealer.PhoneNumber, userId);
+            dealers.Create(dealer.Name,dealer.Town, dealer.ImageUrl, dealer.PhoneNumber, userId);
 
             return RedirectToAction(nameof(DealersController.All), "Dealers");
 

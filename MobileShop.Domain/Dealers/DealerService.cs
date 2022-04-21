@@ -15,11 +15,13 @@
             this.data = data;
         }
 
-        public int Create(string name, string phoneNumber, string userId)
+        public int Create(string name,string town, string imageUrl, string phoneNumber, string userId)
         {
             var dealerData = new Dealer
             {
                 Name = name,
+                Town = town,
+                ImageUrl = imageUrl,
                 PhoneNumber = phoneNumber,
                 UserId = userId
             };

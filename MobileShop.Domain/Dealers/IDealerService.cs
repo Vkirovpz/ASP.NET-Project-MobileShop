@@ -8,7 +8,7 @@ namespace MobileShop.Domain.Dealers
 
         int IdByUser(string userId);
 
-        int Create(string name, string phoneNumber, string userId);
+        int Create(string name, string town, string imageUrl, string phoneNumber, string userId);
 
         public AllDealersServiceModel All(
            string searchTerm = null);
