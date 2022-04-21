@@ -17,6 +17,7 @@ namespace MobileShop
     using MobileShop.Data.Entities;
     using Microsoft.AspNetCore.Identity.UI.Services;
     using MobileShop.Domain.EmailSender;
+    using System;
 
     public class Startup
     {
@@ -33,6 +34,7 @@ namespace MobileShop
             services.AddDbContext<MobileShopDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<User>(options =>
@@ -52,6 +54,13 @@ namespace MobileShop
 
             services.AddMemoryCache();
 
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+                });
+
             services.AddControllersWithViews(options =>
             {
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
@@ -60,6 +69,7 @@ namespace MobileShop
             services.AddTransient<IPhoneService, PhoneService>();
             services.AddTransient<IDealerService, DealerService>();
             services.AddTransient<IStatisticsService, StatisticsService>();
+
             services.AddTransient<IEmailSender, EmailSender>(i =>
                 new EmailSender
                 (
@@ -91,6 +101,8 @@ namespace MobileShop
             .UseRouting()
             .UseAuthentication()
             .UseAuthorization()
+            .UseSession()
+           
             .UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

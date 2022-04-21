@@ -171,7 +171,7 @@
 
         public int Create(string model, string overview, string imageUrl, string color, decimal price, int brandId, int categoryId, int dealerId)
         {
-            
+
             var phoneData = new Phone
             {
                 BrandId = brandId,

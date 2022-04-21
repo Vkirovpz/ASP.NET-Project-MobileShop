@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileShop.Data", "MobileSh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileShop.Domain", "MobileShop.Domain\MobileShop.Domain.csproj", "{0D7989B6-C757-47B0-8D09-E6ACCF6207B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileShop.Tests", "MobileShop.Tests\MobileShop.Tests.csproj", "{3493D25A-D4D4-499E-95E2-F7D67990DD73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileShop.Tests", "MobileShop.Tests\MobileShop.Tests.csproj", "{3493D25A-D4D4-499E-95E2-F7D67990DD73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

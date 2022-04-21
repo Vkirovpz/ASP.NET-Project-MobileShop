@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MobileShop.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class Mobile2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,7 +26,6 @@ namespace MobileShop.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -72,19 +71,6 @@ namespace MobileShop.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Models",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Models", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -224,8 +210,8 @@ namespace MobileShop.Data.Migrations
                     Overview = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     BrandId = table.Column<int>(type: "int", nullable: false),
-                    ModelId = table.Column<int>(type: "int", nullable: false),
                     DealerId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -248,12 +234,6 @@ namespace MobileShop.Data.Migrations
                         name: "FK_Phones_Dealers_DealerId",
                         column: x => x.DealerId,
                         principalTable: "Dealers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Phones_Models_ModelId",
-                        column: x => x.ModelId,
-                        principalTable: "Models",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -317,11 +297,6 @@ namespace MobileShop.Data.Migrations
                 name: "IX_Phones_DealerId",
                 table: "Phones",
                 column: "DealerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Phones_ModelId",
-                table: "Phones",
-                column: "ModelId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -355,9 +330,6 @@ namespace MobileShop.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Dealers");
-
-            migrationBuilder.DropTable(
-                name: "Models");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
