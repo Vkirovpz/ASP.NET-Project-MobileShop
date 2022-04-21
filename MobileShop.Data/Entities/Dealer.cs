@@ -16,6 +16,14 @@
         public string PhoneNumber { get; set; }
 
         [Required]
+        [MaxLength(TownMaxLength)]
+        public string Town { get; set; }
+
+        [MaxLength(ImageUrlMaxLength)]
+        [Url]
+        public string ImageUrl { get; set; }
+
+        [Required]
         public string UserId { get; set; }
 
         public IEnumerable<Phone> Phones { get; init; } = new List<Phone>();

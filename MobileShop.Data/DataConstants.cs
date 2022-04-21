@@ -24,9 +24,12 @@
 
         public class Dealer
         {
+           public const int ImageUrlMaxLength = 300;
            public const int NameMaxLength = 25;
            public const int NameMinLength = 2;
-           public const int PhoneNumberMaxLength = 30;
+            public const int TownMaxLength = 25;
+            public const int TownMinLength = 3;
+            public const int PhoneNumberMaxLength = 30;
            public const int PhoneNumberMinLength = 5;
         }
 

@@ -1,16 +1,13 @@
 ﻿namespace MobileShop.Controllers
 {
-    using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Caching.Memory;
     using MobileShop.Domain.Phones.ServiceModels;
     using MobileShop.Domain.Statistics;
-    using MobileShop.Models;
     using MobileShop.Models.Home;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
+
 
     public class HomeController : Controller
     {
