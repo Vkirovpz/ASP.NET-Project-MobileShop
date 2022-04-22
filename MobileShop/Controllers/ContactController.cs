@@ -17,31 +17,6 @@
             _configuration = configuration;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-        [HttpPost]
-        [Authorize(Roles = "Administrator")]
-        public IActionResult Index(EmailInputFormModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            try
-            {
-                _emailSender.SendEmailAsync(model.Email, model.Subject, model.Message);
-                this.TempData["Message"] = "Successfully send email !";
-                return RedirectToAction("All", "Phones");
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("CustomError", "Errors");
-            }
-
-        }
-
         public IActionResult ContactHost()
         {
             return View();
@@ -58,7 +33,7 @@
                 var hostEmail = _configuration.GetValue<string>("UserName");
                 _emailSender.SendEmailAsync("phonesValentin@gmail.com", $"This is an email from {model.Email}", model.Message);
                 this.TempData["Message"] = "Successfully send email !";
-                return RedirectToAction("All", "Phones");
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception)
             {
