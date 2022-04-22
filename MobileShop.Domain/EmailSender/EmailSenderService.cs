@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Mail;
-using System.Net;
-using Microsoft.AspNetCore.Identity.UI.Services;
+﻿
 namespace MobileShop.Domain.EmailSender
 {
+    using System.Threading.Tasks;
+    using System.Net.Mail;
+    using System.Net;
+    using Microsoft.AspNetCore.Identity.UI.Services;
 
     public class EmailSender : IEmailSender
     {
