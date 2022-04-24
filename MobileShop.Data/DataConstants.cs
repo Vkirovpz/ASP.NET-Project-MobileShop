@@ -40,6 +40,12 @@
             public const int PassswordMaxLength = 100;
             public const int PassswordMinLength = 6;
         }
-       
-   }
+
+        public class Comment
+        {
+            public const int CommentMaxLength = 200;
+            public const int CommentMinLength = 5;
+        }
+
+    }
 }

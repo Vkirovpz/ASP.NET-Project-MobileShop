@@ -18,6 +18,8 @@
 
         public DbSet<Dealer> Dealers { get; init; }
 
+        public DbSet<Comment> Comments { get; init; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -40,9 +42,22 @@
                     .HasForeignKey(p => p.DealerId)
                     .OnDelete(DeleteBehavior.Restrict);
 
+                entity.HasOne(p => p.Dealer)
+                    .WithMany(d => d.Phones)
+                    .HasForeignKey(p => p.DealerId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
                 entity
                 .Property(p => p.Price)
                 .HasColumnType("decimal(18,2)");
+            });
+
+            builder.Entity<Comment>(entity =>
+            {
+                entity.HasOne(c => c.Phone)
+                .WithMany(p => p.Comments)
+                .HasForeignKey(c=> c.PhoneId)
+                .OnDelete(DeleteBehavior.Restrict);
             });
 
             builder

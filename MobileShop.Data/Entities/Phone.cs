@@ -1,5 +1,6 @@
 ﻿namespace MobileShop.Data.Entities
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using static MobileShop.Data.DataConstants.Phone;
@@ -43,6 +44,8 @@
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }
+
+        public IEnumerable<Comment> Comments { get; set; } = new List<Comment>();
 
     }
 }
