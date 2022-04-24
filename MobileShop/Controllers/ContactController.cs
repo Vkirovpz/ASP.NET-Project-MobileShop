@@ -1,6 +1,5 @@
 ﻿namespace MobileShop.Controllers
 {
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
@@ -26,7 +25,7 @@
         {
             if (!ModelState.IsValid)
             {
-                return View("Index");
+                return View("ContactHost");
             }
             try
             {
