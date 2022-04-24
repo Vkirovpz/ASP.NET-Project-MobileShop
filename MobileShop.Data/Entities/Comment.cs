@@ -1,6 +1,5 @@
 ﻿namespace MobileShop.Data.Entities
 {
-    using Microsoft.AspNetCore.Identity;
     using System;
     using System.ComponentModel.DataAnnotations;
     using static MobileShop.Data.DataConstants.Comment;
