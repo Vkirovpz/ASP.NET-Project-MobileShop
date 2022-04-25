@@ -27,17 +27,10 @@
             {
                 return View("ContactHost");
             }
-            try
-            {
+
                 var hostEmail = _configuration.GetValue<string>("UserName");
                 _emailSender.SendEmailAsync("phonesValentin@gmail.com", $"This is an email from {model.Email}", model.Message);
-                this.TempData["Message"] = "Successfully send email !";
                 return RedirectToAction("Index", "Home");
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("CustomError", "Errors");
-            }
         }
     }
 }
