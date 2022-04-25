@@ -1,5 +1,6 @@
 ﻿namespace MobileShop.Areas.Identity.Pages.Account
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
@@ -8,6 +9,8 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using MobileShop.Data.Entities;
+    using MobileShop.Domain.Comments;
+    using MobileShop.Domain.Comments.Models;
     using static Data.DataConstants.User;
 
     [AllowAnonymous]
@@ -16,14 +19,17 @@
         private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;
         private readonly IEmailSender emailSender;
+        private readonly ICommentService commentService;
         public RegisterModel(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ICommentService commentService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.emailSender = emailSender;
+            this.commentService = commentService;
         }
 
         [BindProperty]

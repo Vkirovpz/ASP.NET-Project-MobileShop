@@ -18,6 +18,7 @@ namespace MobileShop
     using Microsoft.AspNetCore.Identity.UI.Services;
     using MobileShop.Domain.EmailSender;
     using System;
+    using MobileShop.Domain.Comments;
 
     public class Startup
     {
@@ -69,6 +70,7 @@ namespace MobileShop
             services.AddTransient<IPhoneService, PhoneService>();
             services.AddTransient<IDealerService, DealerService>();
             services.AddTransient<IStatisticsService, StatisticsService>();
+            services.AddTransient<ICommentService, CommentService>();
 
             services.AddTransient<IEmailSender, EmailSender>(i =>
                 new EmailSender
