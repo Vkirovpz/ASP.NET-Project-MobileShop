@@ -190,5 +190,12 @@
 
             return phoneData.Id;
         }
+
+        public PhoneServiceModel Read(int id)
+        {
+            var phoneDbModel = this.data.Phones.Find(id);
+            var phoneServiceModel = this.mapper.Map<PhoneServiceModel>(phoneDbModel);
+            return phoneServiceModel;
+        }
     }
 }

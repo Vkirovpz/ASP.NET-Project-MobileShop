@@ -13,6 +13,7 @@
 
         IList<PhoneIndexServiceModel> AllIndexPhones();
 
+        PhoneServiceModel Read(int id);
         int Create(
                
                string model,

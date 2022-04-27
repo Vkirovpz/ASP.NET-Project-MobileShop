@@ -13,6 +13,9 @@
 
             this.CreateMap<Phone, PhoneDetailServiceModel>()
                 .ForMember(p=> p.UserId, cfg=>cfg.MapFrom(p=>p.Dealer.UserId));
+
+            this.CreateMap<Phone, PhoneServiceModel>();
+            this.CreateMap<PhoneServiceModel, Phone>();
         }
     }
 }

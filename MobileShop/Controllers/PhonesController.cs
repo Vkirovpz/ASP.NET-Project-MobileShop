@@ -188,6 +188,7 @@
             return RedirectToAction("Mine", "Phones");
         }
 
+        [Authorize]
         public IActionResult Details(int id)
         {
             var phone = this.phones.Details(id);

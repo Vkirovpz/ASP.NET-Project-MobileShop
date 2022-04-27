@@ -49,6 +49,7 @@
             try
             {
                 var entities = this.data.Comments.AsNoTracking().ToList();
+
                 var comments = entities.Select(e => new CommentServiceModel
                 {
                     Id = e.Id,
@@ -57,6 +58,7 @@
                     UserId = e.UserId,
                     PhoneId = e.PhoneId
                 }).ToList();
+
                 return comments;
             }
             catch (Exception)

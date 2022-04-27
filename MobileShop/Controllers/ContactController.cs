@@ -4,7 +4,6 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using MobileShop.Models.Email;
-    using System;
 
     public class ContactController : Controller
     {

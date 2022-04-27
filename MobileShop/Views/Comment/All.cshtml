@@ -1,0 +1,28 @@
+﻿@model PhoneCommentViewModel
+
+
+<div class="row">
+    <div class="col-md-8">
+        <img class="img-fluid" src="@Model.ImageUrl" alt="">
+    </div>
+    <div class="col-md-4">
+        <h3 class="my-3">Comments</h3>
+        @foreach (var comment in Model.Comments)
+        {
+
+            <div class="list-group" style="margin-top:6px">
+                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">@comment.SenderEmail</h5>
+                        <small>@comment.CreatedOn</small>
+                    </div>
+                    <p class="mb-1">@comment.Description</p>
+                </a>
+            </div>
+        }
+    <div style="margin-top:10px">
+        <a asp-controller="Comment" asp-action="Add" asp-route-id="@Model.PhoneId" class="btn btn-primary">Add Comment</a>
+    </div>
+
+    </div>
+</div>

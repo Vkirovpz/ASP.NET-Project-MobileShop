@@ -1,0 +1,11 @@
+﻿@model CommentInputFormModel
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Description">Comment</label>
+        <textarea asp-for="Description" rows="4" class="form-control"></textarea>
+        <input type="hidden" asp-for="PhoneId" />
+        <span asp-validation-for="Description" class="small text-danger"></span>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Submit" />
+</form>
