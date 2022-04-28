@@ -41,6 +41,10 @@
         public IActionResult All([FromQuery] AllDealersQueryModel query)
 
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var queryResult = this.dealers.All(query.SearchTerm);
 
             query.Dealers = queryResult.Dealers;
