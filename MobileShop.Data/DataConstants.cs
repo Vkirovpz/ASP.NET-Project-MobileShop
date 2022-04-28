@@ -31,6 +31,8 @@
             public const int TownMinLength = 3;
             public const int PhoneNumberMaxLength = 30;
            public const int PhoneNumberMinLength = 5;
+           public const int DealerSearchTermMaxLength = 20;
+           public const int DealerSearchTermMinLength = 2;
         }
 
         public class User
@@ -45,6 +47,16 @@
         {
             public const int CommentMaxLength = 200;
             public const int CommentMinLength = 5;
+        }
+
+        public class EmailFormModel
+        {
+            public const int ContactNameMaxLength = 20;
+            public const int ContactNameMinLength = 2;
+            public const int SubjectMaxLength = 30;
+            public const int SubjectMinLength = 1;
+            public const int MessageMaxLength = 300;
+            public const int MessageMinLength = 10;
         }
 
     }

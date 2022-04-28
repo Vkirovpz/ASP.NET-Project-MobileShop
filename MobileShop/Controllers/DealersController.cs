@@ -43,7 +43,7 @@
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return View("All");
             }
             var queryResult = this.dealers.All(query.SearchTerm);
 
