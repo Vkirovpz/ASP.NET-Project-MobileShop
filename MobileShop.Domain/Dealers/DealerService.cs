@@ -50,11 +50,11 @@
             {
                 Id = d.Id,
                 Name = d.Name,
-                PhoneNumber = d.PhoneNumber,         
+                PhoneNumber = d.PhoneNumber,     
+                Town = d.Town
             }).ToList();
 
-        public AllDealersServiceModel All(
-           string searchTerm = null)
+        public AllDealersServiceModel All(string searchTerm = null)
         {
             var dealersQuery = this.data.Dealers.AsQueryable();
 

@@ -1,4 +1,9 @@
 ﻿@model EmailInputFormModel
+
+@{
+    ViewData["Title"] = "Contact Page";
+}
+
 <form class="form-horizontal" role="form" asp-controller="Contact" asp-action="ContactHost" method="post">
     <div class="form-group">
         <label asp-for="Name" class="col-sm-2 control-label"></label>

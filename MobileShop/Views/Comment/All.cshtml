@@ -1,5 +1,6 @@
 ﻿@model PhoneCommentViewModel
 
+@{ ViewData["Title"] = "All Comments"; }
 
 <div class="row">
     <div class="col-md-8">
@@ -20,9 +21,9 @@
                 </a>
             </div>
         }
-    <div style="margin-top:10px">
-        <a asp-controller="Comment" asp-action="Add" asp-route-id="@Model.PhoneId" class="btn btn-primary">Add Comment</a>
-    </div>
+        <div style="margin-top:10px">
+            <a asp-controller="Comment" asp-action="Add" asp-route-id="@Model.PhoneId" class="btn btn-primary">Add Comment</a>
+        </div>
 
     </div>
 </div>

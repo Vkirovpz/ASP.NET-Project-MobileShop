@@ -21,11 +21,6 @@
         public IEnumerable<PhoneBrandServiceModel> GetBrands()
         => this.data
                 .Brands
-                //.Select(b => new PhoneBrandServiceModel
-                //{
-                //    Id = b.Id,
-                //    Name = b.Name
-                //})
                 .ProjectTo<PhoneBrandServiceModel>(this.mapper.ConfigurationProvider)
                 .ToList();
 
@@ -40,11 +35,6 @@
         => this.data
                 .Categories
                 .ProjectTo<PhoneCategoryServiceModel>(this.mapper.ConfigurationProvider)
-                //.Select(c => new PhoneCategoryServiceModel
-                //{
-                //    Id = c.Id,
-                //    Name = c.Name
-                //})
                 .ToList();
 
         public IEnumerable<string> AllPhoneCategories()
@@ -166,7 +156,7 @@
             this.data.Phones.Remove(phoneData);
             this.data.SaveChanges();
         }
-
+         
         public bool isByDealer(int phoneId, int dealerId)
         => this.data.Phones
             .Any(p => p.Id == phoneId && p.DealerId == dealerId);

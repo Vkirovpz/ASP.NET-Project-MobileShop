@@ -1,6 +1,8 @@
 ﻿@model PhoneDetailServiceModel
 
-<h1 class="my-4" >
+@{ ViewData["Title"] = "Details"; }
+
+<h1 class="my-4">
     @Model.BrandName @Model.Model
 </h1>
 
@@ -31,6 +33,6 @@
         <a asp-controller="Comment" asp-action="All" asp-route-id="@Model.Id" class="btn btn-primary">View Comments</a>
         <a asp-controller="Comment" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary">Add Comment</a>
     </div>
-    
+
 </div>
 
