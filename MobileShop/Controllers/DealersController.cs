@@ -45,6 +45,7 @@
             {
                 return View("All");
             }
+
             var queryResult = this.dealers.All(query.SearchTerm);
 
             query.Dealers = queryResult.Dealers;

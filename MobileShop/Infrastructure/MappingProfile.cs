@@ -16,6 +16,12 @@
 
             this.CreateMap<Phone, PhoneServiceModel>();
             this.CreateMap<PhoneServiceModel, Phone>();
+
+            this.CreateMap<PhoneCategoryServiceModel, Category>();
+            this.CreateMap<Category, PhoneCategoryServiceModel>();
+
+            this.CreateMap<PhoneBrandServiceModel, Brand>();
+            this.CreateMap<Brand, PhoneBrandServiceModel>();
         }
     }
 }

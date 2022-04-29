@@ -21,11 +21,12 @@
         public IEnumerable<PhoneBrandServiceModel> GetBrands()
         => this.data
                 .Brands
-                .Select(b => new PhoneBrandServiceModel
-                {
-                    Id = b.Id,
-                    Name = b.Name
-                })
+                //.Select(b => new PhoneBrandServiceModel
+                //{
+                //    Id = b.Id,
+                //    Name = b.Name
+                //})
+                .ProjectTo<PhoneBrandServiceModel>(this.mapper.ConfigurationProvider)
                 .ToList();
 
         public IEnumerable<string> AllPhoneBrands()
@@ -38,11 +39,12 @@
         public IEnumerable<PhoneCategoryServiceModel> GetCategories()
         => this.data
                 .Categories
-                .Select(c => new PhoneCategoryServiceModel
-                {
-                    Id = c.Id,
-                    Name = c.Name
-                })
+                .ProjectTo<PhoneCategoryServiceModel>(this.mapper.ConfigurationProvider)
+                //.Select(c => new PhoneCategoryServiceModel
+                //{
+                //    Id = c.Id,
+                //    Name = c.Name
+                //})
                 .ToList();
 
         public IEnumerable<string> AllPhoneCategories()
