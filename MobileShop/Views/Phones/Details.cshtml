@@ -26,6 +26,7 @@
         <ul>
             <li>Dealer: @Model.DealerName</li>
             <li>Phone Number: @Model.DealerPhoneNumber</li>
+            <li>Town: @Model.DealerTown</li>
         </ul>
         <a asp-controller="Comment" asp-action="All" asp-route-id="@Model.Id" class="btn btn-primary">View Comments</a>
         <a asp-controller="Comment" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary">Add Comment</a>

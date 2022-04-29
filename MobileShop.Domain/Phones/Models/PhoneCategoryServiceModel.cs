@@ -1,5 +1,4 @@
-﻿
-namespace MobileShop.Domain.Phones.ServiceModels
+﻿namespace MobileShop.Domain.Phones.ServiceModels
 {
     public class PhoneCategoryServiceModel
     {
